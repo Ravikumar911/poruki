@@ -34,7 +34,7 @@ public class Users implements Serializable{
     private String password;
     
     private String email;
-    
+    	
     @Column(name="first_name")
     private String firstName;
     
