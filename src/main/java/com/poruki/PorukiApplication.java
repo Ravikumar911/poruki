@@ -36,7 +36,7 @@ public class PorukiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args ) throws Exception {
 		
-		System.out.println("Ravi");
+		//System.out.println("Ravi");
 		Users user =UserUtils.createBasicUser(webmasterEmail,webmasterUsername);
 		user.setPassword(webmasterPassword);
 		Set<UserRole> userRole=new HashSet<>();
