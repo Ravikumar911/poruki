@@ -28,8 +28,12 @@ public class PorukiApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args ) throws Exception {
+		
+		String username="ravikumar";
+		String email="ravikumar@mavjay.com";
+				
 		System.out.println("Ravi");
-		Users user =UserUtils.createBasicUser();
+		Users user =UserUtils.createBasicUser(username,email);
 		Set<UserRole> userRole=new HashSet<>();
 		userRole.add(new UserRole(user, new Role(RolesEnum.PRO)));
 		userService.createUser(user, PlansEnum.PRO, userRole);
