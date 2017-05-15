@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,12 @@ import com.poruki.utils.UserUtils;
 public class PorukiApplication implements CommandLineRunner {
 	@Autowired
 	private UserService userService;
+	@Value("${webmaster.username}")
+	private String webmasterUsername;
+	@Value("${webmaster.password}")
+	private String webmasterPassword;
+	@Value("${webmaster.email}")
+	private String webmasterEmail;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PorukiApplication.class, args);
@@ -29,13 +36,11 @@ public class PorukiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args ) throws Exception {
 		
-		String username="ravikumar";
-		String email="ravikumar@mavjay.com";
-				
 		System.out.println("Ravi");
-		Users user =UserUtils.createBasicUser(username,email);
+		Users user =UserUtils.createBasicUser(webmasterEmail,webmasterUsername);
+		user.setPassword(webmasterPassword);
 		Set<UserRole> userRole=new HashSet<>();
-		userRole.add(new UserRole(user, new Role(RolesEnum.PRO)));
+		userRole.add(new UserRole(user, new Role(RolesEnum.ADMIN)));
 		userService.createUser(user, PlansEnum.PRO, userRole);
 	}
 }
