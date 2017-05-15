@@ -1,6 +1,7 @@
 package com.poruki.backend.persistance.domain.backend;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Users implements Serializable{
+public class Users implements Serializable,UserDetails {
 	private static final long serialVersionUID=1L;
 	
     public Users(){
@@ -29,7 +32,7 @@ public class Users implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     
-    private String usename;
+    private String username;
     
     private String password;
     
@@ -80,12 +83,12 @@ public class Users implements Serializable{
 		this.id = id;
 	}
 
-	public String getUsename() {
-		return usename;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsename(String usename) {
-		this.usename = usename;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -195,6 +198,31 @@ public class Users implements Serializable{
 		Users other = (Users) obj;
 		if (id != other.id)
 			return false;
+		return true;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> authorities= new HashSet<>();
+		userRoles.forEach(ur->authorities.add(new Authority(ur.getRole().getName())));
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
 		return true;
 	}
     

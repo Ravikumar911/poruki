@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.poruki.enums.RolesEnum;
+
 @Entity
 public class Role implements Serializable {
 	
@@ -20,7 +22,7 @@ public class Role implements Serializable {
 	
 	private String name;
 
-	@OneToMany(mappedBy="role", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="role", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<UserRole> userRoles=new HashSet<>();
 	
 	public Set<UserRole> getUserRoles() {
@@ -69,7 +71,12 @@ public class Role implements Serializable {
 		return true;
 	}
 	
-	private Role(){
+	public Role(){
 		
+	}
+	
+	public Role(RolesEnum rolesenum){
+		this.id=rolesenum.getId();
+		this.name=rolesenum.getRoleName();
 	}
 }

@@ -7,4 +7,6 @@ import com.poruki.backend.persistance.domain.backend.Users;
 @Repository
 public interface UserRepository extends CrudRepository<Users, Long>{
 
+	public Users findByUsername(String usename);
+
 }
