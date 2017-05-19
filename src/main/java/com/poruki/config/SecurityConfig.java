@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.poruki.backend.service.UserSecurityService;
+import com.poruki.web.controllers.ForgotMyPasswordController;
 
 
 @Configuration
@@ -45,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/contact/**",
 			"/error/**/*",
 			"/console/**",
-			"/forgotmypassword/**"
+			ForgotMyPasswordController.CHANGE_PASSWORD_PATH,
+			ForgotMyPasswordController.FORGOT_PASSWORD_URL_MAPPING
 	};
 	
 	@Override
