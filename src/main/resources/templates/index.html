@@ -4,7 +4,10 @@
 </head>
 <body>
 	<h1 th:text="#{index.welcome}"></h1>
+	<a th:href="@{/signup?planId=2}">Pro Account</a>
+	<a th:href="@{/signup?planId=1}">Basic Account</a>
 <div th:replace="common/header :: before-body-script"></div>
+
 </body>
 </html>
 

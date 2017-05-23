@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.poruki.backend.persistance.domain.backend.Users;
 import com.poruki.web.controllers.ForgotMyPasswordController;
+import com.poruki.web.domain.frontend.BasicAccountPayload;
 
 public class UserUtils {
 	
@@ -50,5 +51,8 @@ public class UserUtils {
 
         return passwordResetUrl;
     }
-
+    
+    public static<T extends BasicAccountPayload> Users fromWebUserToDomainUser(T webUser){
+    	return null;
+    }
 }
